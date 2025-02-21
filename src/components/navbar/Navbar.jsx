@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import uniLogo from "../../assets/images/uniLogo.png";
+import temLogo from "../../assets/images/Athletic logo white.png"
 import eventLogo from "../../assets/images/eventLogo.png";
 import { useNavigate } from "react-router-dom";
 
@@ -44,12 +45,22 @@ function Navbar() {
           />
           <Box
             component="img"
+            src={temLogo}
+            alt="University Logo"
+            sx={{
+              width: { xs: 70, md: 110 },
+              height: "auto",
+              marginLeft: "10px"
+            }}
+          />
+          <Box
+            component="img"
             src={eventLogo}
             alt="University Logo"
             sx={{
-              width: { xs: 90, md: 110 },
+              width: { xs: 70, md: 110 },
               height: "auto",
-              marginLeft: "25px",
+              marginLeft: "10px",
             }}
           />
 
