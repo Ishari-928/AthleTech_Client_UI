@@ -1,6 +1,7 @@
 import "../styles/Home.css";
 import { Box, Button, Typography } from "@mui/material";
-import bgImage from "../assets/images/Home Page Carousel.svg";
+// import bgImage from "../assets/images/Home Page Carousel.svg";
+import bgImage from "../assets/images/Group 3917.png"
 import CountDown from "../components/countDown/CountDown";
 import { eventDay } from "../DB/eventData";
 import description1Img from "../assets/images/runner.png";
@@ -11,6 +12,7 @@ const Main = () => {
     <Box
       sx={{
         backgroundImage: `url(${bgImage})`,
+       
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -51,15 +53,15 @@ const Main = () => {
         </Typography>
         <Typography
           variant="h6"
-          sx={{ fontSize: { xs: "14px", md: "20px" }, opacity: 0.9 }}
+          sx={{ fontSize: { xs: "14px", md: "20px" }, opacity: 1 }}
         >
-          Mora Kid Athlete – The Ultimate Track & Field Meet for Rising Stars
+          <strong>Mora Kid Athlete – The Ultimate Track & Field Meet for Rising Stars</strong>
         </Typography>
         <Typography
           variant="caption"
-          sx={{ fontSize: { xs: "10px", md: "12px" }, opacity: 0.8 }}
+          sx={{ fontSize: { xs: "10px", md: "12px" }, opacity: 1 }}
         >
-          Run, Jump, Throw | Build Your Legacy
+          <strong>Run, Jump, Throw | Build Your Legacy</strong>
         </Typography>
       </Box>
 
@@ -112,7 +114,7 @@ const Cards = () => {
           href="/entry-form"
           className="card"
           style={{
-            backgroundImage: "url('./src/assets/images/Entryform.svg')",
+            backgroundImage: "url('./src/assets/images/Group 3917.png')",
           }}
         >
           <h3>Entry Form</h3>

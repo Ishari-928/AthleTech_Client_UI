@@ -43,16 +43,16 @@ body {
   justify-content: space-between;
   align-items: center;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0 ato;
 }
 
 .gallery-container {
-  margin: auto;
+
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 35px;
-  padding: 50px;
-  margin: 20px auto;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 40px;
+  margin: auto;
 }
 
 @media (max-width: 768px) {
