@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import winners from "../../assets/images/AboutUsImages/winners.jpg";
 
 const description =
-  "Last year’s Kids’ Athletic Meet was a grand event with the participation of many colleges and individual athletes, creating an exciting and competitive atmosphere. Held at the University of Moratuwa grounds, the event witnessed remarkable performances from young talents. Among them, the athletes from Maris Stella College shone brightly, securing the Boys’ Championship title with their dedication and skill. We congratulate them on their achievement and look forward to another thrilling competition this year!";
+  "Last year’s Junior track & field Meet was a grand event with the participation of many colleges and individual athletes, creating an exciting and competitive atmosphere. Held at the University of Moratuwa grounds, the event witnessed remarkable performances from young talents. Among them, the athletes from Maris Stella College shone brightly, securing the Boys’ Championship title with their dedication and skill. We congratulate them on their achievement and look forward to another thrilling competition this year!";
 
 function PastWinners() {
   return (

@@ -185,14 +185,16 @@ const MeetContent = () => {
               fontWeight: 800,
               color: "rgb(49, 49, 49)",
               marginBottom: "15px",
+              
+              
             }}
           >
             MORA Kid Athlete
           </Typography>
 
-          <Typography variant="body1" paragraph>
-            Welcome to Mora Kid Athlete, the premier all-island kids’ athletic
-            meet, proudly organized by{" "}
+          <Typography variant="body1" paragraph sx={{ textAlign: "justify" }}>
+            Welcome to Mora Kid Athlete, the premier all-island JUNIOR
+            track & field meet, proudly organized by{" "}
             <span style={{ fontWeight: 600 }}>
               {" "}
               the University of Moratuwa Athletic Team.
@@ -201,15 +203,15 @@ const MeetContent = () => {
             across Sri Lanka to showcase their talent, push their limits, and
             take the first step toward a promising athletic future.
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph sx={{ textAlign: "justify" }}>
             We are dedicated to discovering the next generation of champions by
             fostering a competitive yet supportive environment where young
-            athletes can thrive. Through Mora Kid Athletic, we aim to inspire a
+            athletes can thrive. Through Junior track & field meet, we aim to inspire a
             passion for excellence, teamwork, and sportsmanship in every
             participant. This event is a celebration of determination,
             perseverance, and the drive to succeed.
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph sx={{ textAlign: "justify" }}>
             Stay connected for event updates, motivational success stories, and
             the latest highlights. Join us in building a legacy of athletic
             brilliance that will leave a lasting impact on Sri Lankan sports.
@@ -277,9 +279,9 @@ const MeetDetails = () => {
             MORA Kid Athlete 2025!
           </Typography>
 
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph sx={{ textAlign: "justify" }}>
             The University of Moratuwa Athletic Team is excited to bring back
-            the <strong>Kids’ Meet</strong> for the second time! Get ready for
+            the <strong>JUNIOR Track & Field Meet</strong> for the second time! Get ready for
             two days full of energy, excitement, and unforgettable moments.
           </Typography>
 
@@ -293,7 +295,7 @@ const MeetDetails = () => {
             {eventDay.date1} - {eventDay.date2} <br />
           </Typography>
 
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph sx={{ textAlign: "justify" }}>
             This event is open to all young athletes who love running, jumping,
             and competing in a friendly atmosphere. Let’s inspire the next
             generation of champions!
