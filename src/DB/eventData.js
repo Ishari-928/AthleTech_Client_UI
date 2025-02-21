@@ -7,4 +7,6 @@ export const eventDay = {
   isRegistrationOpen: true,
   scheduleLink:
     "https://drive.google.com/file/d/1ziV6zcPQeZVk8b2kdbzQtSuAgkGNevHT/view?usp=drive_link",
+  rulesLink:
+    "https://drive.google.com/file/d/1zHeom-yAZ17QBf5s8lZk38fpXeXWj_Fu/view?usp=sharing"
 };

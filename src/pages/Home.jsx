@@ -187,11 +187,11 @@ const MeetContent = () => {
               marginBottom: "15px",
             }}
           >
-            MORA Kid Athletic
+            MORA Kid Athlete
           </Typography>
 
           <Typography variant="body1" paragraph>
-            Welcome to Mora Kid Athletic, the premier all-island kids’ athletic
+            Welcome to Mora Kid Athlete, the premier all-island kids’ athletic
             meet, proudly organized by{" "}
             <span style={{ fontWeight: 600 }}>
               {" "}
@@ -274,7 +274,7 @@ const MeetDetails = () => {
               marginBottom: "15px",
             }}
           >
-            Kids' Meet 2025!
+            MORA Kid Athlete 2025!
           </Typography>
 
           <Typography variant="body1" paragraph>
@@ -299,8 +299,19 @@ const MeetDetails = () => {
             generation of champions!
           </Typography>
 
-          <Typography variant="body1" sx={{ marginBottom: "15px" }}>
+          <Typography variant="body1" sx={{ marginBottom: "" }}>
             Don’t miss out on the fun! See you on the track!
+          </Typography>
+
+          <Typography variant="body1" sx={{ marginBottom: "15px" }}>
+            <a 
+              href={eventDay.rulesLink} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ textDecoration: "none", color: "#0070FF" }}
+            >
+              Click here to view the rules and regulation.
+            </a>
           </Typography>
 
           <Box
@@ -347,11 +358,12 @@ const MeetDetails = () => {
 };
 
 import partnerImg1 from "../assets/images/Cramp guard plus.svg";
-import partnerImg2 from "../assets/images/Samaposha.svg";
+import partnerImg2 from "../assets/images/2025 Parner 2.png";
 import partnerImg3 from "../assets/images/Pick_me.svg";
-import partnerImg4 from "../assets/images/partners 2.svg";
+import partnerImg4 from "../assets/images/2025 partner 1.jpg";
 import partnerImg5 from "../assets/images/bairaha.jpeg";
 import partnerImg6 from "../assets/images/Ncinga.svg";
+
 
 // Partners Section
 const Partners = () => {
@@ -372,13 +384,13 @@ const Partners = () => {
             />
           </a>
           <a
-            href="https://www.samaposha.com"
+            href="https://www.cic.lk"
             target="_blank"
             rel="noopener noreferrer"
           >
             <img
               src={partnerImg2}
-              alt="Samaposha Logo"
+              alt="e-life Logo"
               className="partner-logo"
             />
           </a>
@@ -387,27 +399,30 @@ const Partners = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={partnerImg3} alt="PickMe Logo" className="partner-logo" />
+            <img
+              src={partnerImg3}
+              alt="PickMe Logo"
+              className="partner-logo" />
           </a>
           <a
-            href="https://www.partner4.com"
+            href="http://www.avi.lk"
             target="_blank"
             rel="noopener noreferrer"
           >
             <img
               src={partnerImg4}
-              alt="Partner 4 Logo"
+              alt="AVI Logo"
               className="partner-logo"
             />
           </a>
           <a
-            href="https://www.moraspirit.com"
+            href="https://www.bairaha.com"
             target="_blank"
             rel="noopener noreferrer"
           >
             <img
               src={partnerImg5}
-              alt="MoraSpirit Logo"
+              alt="Bairaha Logo"
               className="partner-logo"
             />
           </a>
