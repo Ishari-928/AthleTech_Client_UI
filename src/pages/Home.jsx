@@ -432,7 +432,7 @@ const Partners = () => {
             />
           </a>
           <a
-            href="https://www.partner6.com"
+            href="https://www.ncinga.net/"
             target="_blank"
             rel="noopener noreferrer"
           >
