@@ -1,7 +1,8 @@
 import "../styles/Home.css";
 import { Box, Button, Typography } from "@mui/material";
 // import bgImage from "../assets/images/Home Page Carousel.svg";
-import bgImage from "../assets/images/Group 3917.png"
+// import bgImage from "../assets/images/Group 3917.png"
+import bgImage from "../assets/images/2025 InterUni.jpg";
 import CountDown from "../components/countDown/CountDown";
 import { eventDay } from "../DB/eventData";
 import description1Img from "../assets/images/runner.png";
@@ -11,7 +12,7 @@ const Main = () => {
   return (
     <Box
       sx={{
-        backgroundImage: `url(${bgImage})`,
+        backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.76), rgba(252, 0, 0, 0.35)), url(${bgImage})`,
        
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -55,7 +56,7 @@ const Main = () => {
           variant="h6"
           sx={{ fontSize: { xs: "14px", md: "20px" }, opacity: 1 }}
         >
-          <strong>Mora Kid Athlete – The Ultimate Track & Field Meet for Rising Stars</strong>
+          <strong>Mora Kid Athlete – Junior Track & Field Meet</strong>
         </Typography>
         <Typography
           variant="caption"
@@ -114,7 +115,7 @@ const Cards = () => {
           href="/entry-form"
           className="card"
           style={{
-            backgroundImage: "url('./src/assets/images/Group 3917.png')",
+            backgroundImage: "url('./src/assets/images/2025 InterUni.jpg')",
           }}
         >
           <h3>Entry Form</h3>
@@ -202,13 +203,13 @@ const MeetContent = () => {
               the University of Moratuwa Athletic Team.
             </span>
             This event provides an exciting platform for young athletes from
-            across Sri Lanka to showcase their talent, push their limits, and
+            across Sri Lanka to showcase their talent, push their limits and
             take the first step toward a promising athletic future.
           </Typography>
           <Typography variant="body1" paragraph sx={{ textAlign: "justify" }}>
             We are dedicated to discovering the next generation of champions by
             fostering a competitive yet supportive environment where young
-            athletes can thrive. Through Junior track & field meet, we aim to inspire a
+            athletes can thrive. Through Junior Track & Field Meet, we aim to inspire a
             passion for excellence, teamwork, and sportsmanship in every
             participant. This event is a celebration of determination,
             perseverance, and the drive to succeed.
@@ -282,7 +283,7 @@ const MeetDetails = () => {
           </Typography>
 
           <Typography variant="body1" paragraph sx={{ textAlign: "justify" }}>
-            The University of Moratuwa Athletic Team is excited to bring back
+            The University of Moratuwa Athletics Team is excited to bring back
             the <strong>JUNIOR Track & Field Meet</strong> for the second time! Get ready for
             two days full of energy, excitement, and unforgettable moments.
           </Typography>
