@@ -31,7 +31,7 @@ function PastWinners() {
           textAlign: "left",
         }}
       >
-        2024 Winners (Boys)- Junior Track & Field Meet
+        2024 Boys Winners
       </Typography>
 
       <Box sx={{ width: "100%" }}>
@@ -67,7 +67,7 @@ function PastWinners() {
           marginTop: "40px",
         }}
       >
-        2024 Winners (Girls)- Junior Track & Field Meet
+        2024 Girls Winners
       </Typography>
 
       <Box sx={{ width: "100%" }}>

@@ -196,8 +196,8 @@ const MeetContent = () => {
           </Typography>
 
           <Typography variant="body1" paragraph sx={{ textAlign: "justify" }}>
-            Welcome to Mora Kid Athlete, the premier all-island JUNIOR
-            track & field meet, proudly organized by{" "}
+            Welcome to Mora Kid Athlete, the premier all-island Junior
+            Track & Tield Meet, proudly organized by{" "}
             <span style={{ fontWeight: 600 }}>
               {" "}
               the University of Moratuwa Athletic Team.
