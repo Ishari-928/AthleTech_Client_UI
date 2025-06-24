@@ -7,6 +7,8 @@ import CountDown from "../components/countDown/CountDown";
 import { eventDay } from "../DB/eventData";
 import description1Img from "../assets/images/runner.png";
 import kidMeet from "../assets/images/kids.png";
+import { useNavigate } from 'react-router-dom';
+
 
 const Main = () => {
   return (
@@ -89,7 +91,7 @@ const Main = () => {
           sx={{
             backgroundColor: eventDay.isRegistrationOpen ? "#FF754A" : "gray",
             color: "white",
-            padding: "10px",
+            padding: "5px",
           }}
           disabled={!eventDay.isRegistrationOpen}
           onClick={() => {
@@ -107,20 +109,23 @@ const Main = () => {
 
 // Cards Section
 const Cards = () => {
+  const navigate = useNavigate();
   return (
     <div className="topic">
       <h1>Explore</h1>
       <div className="cards-container">
-        <a
-          href="/entry-form"
+        <div
+          onClick={() => navigate('/registration')}
           className="card"
           style={{
-            backgroundImage: "url('./src/assets/images/2025 InterUni.jpg')",
+            backgroundImage: "url('./src/assets/images/Handbook.svg')",
+            cursor: 'pointer',
           }}
         >
-          <h3>Entry Form</h3>
+          <h3>Registration Form</h3>
           <p>Closing date: 25-02-2025</p>
-        </a>
+        </div>
+
         <a
           href="/handbook"
           className="card"
@@ -152,7 +157,7 @@ const MeetContent = () => {
         justifyContent: "center",
         width: "100%",
 
-        marginTop: "60px",
+        marginTop: "0px",
       }}
     >
       <Box
@@ -170,6 +175,7 @@ const MeetContent = () => {
           sx={{
             width: { xs: "90%", md: "500px" },
             height: { xs: "auto", md: "400px" },
+            marginTop: { md: "40px" },
             borderRadius: "15px",
           }}
         ></Box>
@@ -179,7 +185,7 @@ const MeetContent = () => {
             fontSize: "18px",
             lineHeight: 1.6,
             color: " #555555",
-            width: { xs: "90%", md: "40%" },
+            width: { xs: "80%", md: "40%" },
           }}
         >
           <Typography
@@ -241,7 +247,7 @@ const MeetDetails = () => {
         width: "100%",
 
         marginTop: { xs: "50px", md: "100px" },
-        marginBottom: "50px",
+        marginBottom: "20px",
       }}
     >
       <Box
@@ -453,7 +459,7 @@ const Home = () => {
   return (
     <div>
       <Main />
-      {/* <Cards /> */}
+      <Cards />
       <MeetContent />
       <MeetDetails />
       <Partners />

@@ -43,12 +43,12 @@ function CountDown({ date }) {
       {timeLeft.days === 0 && timeLeft.hours === 0 ? (
         <Typography
           sx={{
-            fontSize: { xs: "30px", md: "50px" },
+            fontSize: { xs: "20px", md: "50px" },
             fontWeight: 700,
             color: "white",
           }}
         >
-          🎉 Event is Happening! 🎉
+          🎉 Announced Soon! 🎉
         </Typography>
       ) : (
         <Box sx={{ display: "flex", gap: { xs: "20px", md: "50px" } }}>

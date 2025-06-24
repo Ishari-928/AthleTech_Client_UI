@@ -61,58 +61,108 @@ body {
 
 .cards-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px;
+  flex-direction: column; /* default: mobile view */
+  align-items: center;
+  gap: 30px;
+  padding: 0px;
 }
 
 .card {
-  width: 100%;
-  background-size: cover; /* Ensures the background fills the card without stretching */
+  width: 90%;
+  max-width: 250px;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
   position: relative;
-  background-position: center; /* Centers the background image */
-  max-width: 280px; /* Adjust card width as needed */
-  height: 250px; /* Adjust card height as needed */
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Aligns the content inside the card to the bottom */
-  margin: 30px;
+  justify-content: flex-end;
+  margin: 10px;
   text-align: left;
-  text-decoration: none; /* Remove underline for links */
+  text-decoration: none;
   color: white;
-  border-radius: 10px; /* Make the cards look like buttons */
-  transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for hover */
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card h3 {
-  font-size: 25px;
-  margin-left: 30px;
-  /* color: #fff; */
+  font-size: 20px;
+  margin-left: 20px;
   margin-bottom: 10px;
 }
 
 .card p {
-  /* color: #fff; */
-  margin-top: 0px;
-  margin-left: 30px;
-  margin-bottom: 30px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 
-/* Add hover and active button-like styles */
 .card:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow to give it a "pop-out" effect */
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card:active {
-  transform: scale(0.98); /* Slight shrink effect when clicking */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Adjust shadow for active state */
+  transform: scale(0.98);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 480px) {
+/* ➤ Display 3 cards in one row when screen width > 425px */
+@media (min-width: 426px) {
+  .cards-container {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+}
+
+@media (max-width:426px) {
+  .cards-container {
+    gap: 0px;
+    
+  }
+}
+
+/* ➤ Slightly increase card size on tablet */
+@media (min-width: 768px) {
   .card {
-    width: 100%;
-    margin: 10px 0;
+    width: 180px;
+    height: 175px;
+  }
+}
+
+/* ➤ Laptop view */
+@media (min-width: 1024px) {
+  .card {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* ➤ Large laptop / desktop */
+@media (min-width: 1440px) {
+  .card {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* ➤ Smaller mobile adjustments (Mobile S, M, L <= 425px) */
+@media (max-width: 426px) {
+  .card {
+    width: 175px;
+    height: 175px;
+    font-size: 14px;
+   
+  }
+
+  .card h3 {
+    font-size: 18px;
+  }
+
+  .card p {
+    font-size: 12px;
   }
 }
 
@@ -185,11 +235,17 @@ body {
   color: rgb(49, 49, 49);
 }
 
+@media (max-width: 376px){
+  .topic h1 {
+    font-size: 37px;
+  }
+}
+
 .partners-container {
   display: flex;
   flex-direction: column; /* Ensures content stacks properly */
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   max-width: 1100px; /* Match the width of content-container */
   margin: 0 auto; /* Center the container */
 }
@@ -233,3 +289,5 @@ body {
     grid-template-columns: 1fr; /* 1 column for mobile devices */
   }
 }
+
+
