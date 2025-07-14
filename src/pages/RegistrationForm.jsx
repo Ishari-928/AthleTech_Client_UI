@@ -27,7 +27,7 @@ const Registration = ({ onSubmit }) => {
     email: '',
     contact: '',
     gender: 'male',
-    address: '',
+    school: '',
     dob: '',
     ageGroup: '',
     events: [],
@@ -102,8 +102,8 @@ const Registration = ({ onSubmit }) => {
     if (!formData.contact.trim()) {
       newErrors.contact = '*Please enter your contact number';
     }
-    if (!formData.address.trim()) {
-      newErrors.address = '*Please enter your address';
+    if (!formData.school.trim()) {
+      newErrors.address = '*Please enter your school name';
     }
     if (!formData.dob) {
       newErrors.dob = '*Please select your date of birth';
@@ -245,13 +245,13 @@ const Registration = ({ onSubmit }) => {
 
           {/* Address */}
           <Box sx={{ mb: 3 }}>
-            <Typography sx={{ color: '#333', mb: 1, fontSize: '15px', fontWeight: 500 }}>Address</Typography>
+            <Typography sx={{ color: '#333', mb: 1, fontSize: '15px', fontWeight: 500 }}>School Name</Typography>
             <TextField
               fullWidth
-              name="address"
+              name="school"
               multiline
-              rows={2}
-              placeholder="No.33/2/1, Pokunawatta Rd, Horethuduwa, Moratuwa"
+              rows={1}
+              placeholder="Royal College, Colombo 07"
               value={formData.address}
               onChange={handleChange}
               error={!!errors.address}

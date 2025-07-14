@@ -21,6 +21,7 @@ const pages = [
   { page: "Gallery", path: "/gallery" },
   { page: "About Us", path: "/aboutus" },
   { page: "News", path: "/news" },
+  { page: "Coaches Details", path: "/coaches-details" },
   { page: "Contact Us", path: "/contact" },
   
 ];
