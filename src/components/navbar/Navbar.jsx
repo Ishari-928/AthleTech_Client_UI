@@ -135,7 +135,7 @@ function Navbar() {
           <Box sx={{ ml: "auto", display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.page}
                 onClick={() => handleCloseNavMenu(page.path)}
                 sx={{
                   my: 2,

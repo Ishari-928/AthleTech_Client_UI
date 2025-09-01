@@ -25,7 +25,7 @@ const UploadContainer = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   cursor: 'pointer',
   width: '100%',
-  maxWidth: 800, // match your form container
+  maxWidth: 800,
   minHeight: 150,
   backgroundColor: '#fafafa',
   display: 'flex',
@@ -47,7 +47,7 @@ const HiddenInput = styled('input')({
 
 const FileUpload = ({ onFilesSelected }) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [selectedFile, setSelectedFile] = useState(null);
   const fileInputRef = useRef(null);
 
   const handleDragOver = (e) => {
@@ -64,8 +64,8 @@ const FileUpload = ({ onFilesSelected }) => {
     e.stopPropagation();
     setIsDragging(false);
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      const files = Array.from(e.dataTransfer.files);
-      processFiles(files);
+      const file = e.dataTransfer.files[0]; // only take the first file
+      processFile(file);
     }
   };
 
@@ -75,36 +75,32 @@ const FileUpload = ({ onFilesSelected }) => {
 
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
-      const files = Array.from(e.target.files);
-      processFiles(files);
+      const file = e.target.files[0]; // only one file
+      processFile(file);
     }
   };
 
-  const processFiles = (files) => {
+  const processFile = (file) => {
     const validExtensions = ['application/pdf', 'image/jpeg'];
 
-    const validFiles = files.filter((file) => {
-      const isValidType = validExtensions.includes(file.type);
-      const isValidSize = file.size <= MAX_FILE_SIZE_MB * 1024 * 1024;
+    const isValidType = validExtensions.includes(file.type);
+    const isValidSize = file.size <= MAX_FILE_SIZE_MB * 1024 * 1024;
 
-      if (!isValidType) {
-        alert(`${file.name} is not a supported file type (.jpeg or .pdf).`);
-      } else if (!isValidSize) {
-        alert(`${file.name} exceeds the 5MB size limit.`);
-      }
+    if (!isValidType) {
+      alert(`${file.name} is not a supported file type (.jpeg or .pdf).`);
+      return;
+    } else if (!isValidSize) {
+      alert(`${file.name} exceeds the 5MB size limit.`);
+      return;
+    }
 
-      return isValidType && isValidSize;
-    });
-
-    const updatedFiles = [...selectedFiles, ...validFiles];
-    setSelectedFiles(updatedFiles);
-    onFilesSelected?.(updatedFiles);
+    setSelectedFile(file);
+    onFilesSelected?.([file]); // always send as array
   };
 
-  const handleRemoveFile = (indexToRemove) => {
-    const updatedFiles = selectedFiles.filter((_, index) => index !== indexToRemove);
-    setSelectedFiles(updatedFiles);
-    onFilesSelected?.(updatedFiles);
+  const handleRemoveFile = () => {
+    setSelectedFile(null);
+    onFilesSelected?.([]);
   };
 
   return (
@@ -136,33 +132,29 @@ const FileUpload = ({ onFilesSelected }) => {
         <HiddenInput
           ref={fileInputRef}
           type="file"
-          multiple
           accept=".jpeg, .pdf"
           onChange={handleFileChange}
         />
       </UploadContainer>
 
-      {selectedFiles.length > 0 && (
+      {selectedFile && (
         <Box mt={2} width="100%">
           <List dense>
-            {selectedFiles.map((file, index) => (
-              <ListItem
-                key={index}
-                secondaryAction={
-                  <IconButton edge="end" onClick={() => handleRemoveFile(index)}>
-                    <CloseIcon />
-                  </IconButton>
-                }
-              >
-                <ListItemIcon>
-                  <FileIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primary={file.name}
-                  secondary={`${(file.size / (1024 * 1024)).toFixed(2)} MB`}
-                />
-              </ListItem>
-            ))}
+            <ListItem
+              secondaryAction={
+                <IconButton edge="end" onClick={handleRemoveFile}>
+                  <CloseIcon />
+                </IconButton>
+              }
+            >
+              <ListItemIcon>
+                <FileIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary={selectedFile.name}
+                secondary={`${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB`}
+              />
+            </ListItem>
           </List>
         </Box>
       )}

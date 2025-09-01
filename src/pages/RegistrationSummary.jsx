@@ -8,17 +8,20 @@ import { Delete } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import FileUpload from '../components/fileUpload/FileUpload';
 import SuccessModal from '../components/successModel/SuccessModal';
+import { registerAthletes } from '../api/athleteService';
 
 const RegistrationSummary = ({ athletes, onAddNewAthlete, onDelete }) => {
     const [checked, setChecked] = useState(athletes.map(() => true));
     const [totalFee, setTotalFee] = useState(0);
     const [paymentFile, setPaymentFile] = useState(null);
     const [termsAccepted, setTermsAccepted] = useState(false);
-    const [errors, setErrors] = useState({  // Error messages
+    const [errors, setErrors] = useState({
         paymentFile: '',
         terms: ''
     });
     const [openSuccessModal, setOpenSuccessModal] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [apiError, setApiError] = useState('');
 
 
     const navigate = useNavigate();
@@ -45,11 +48,7 @@ const RegistrationSummary = ({ athletes, onAddNewAthlete, onDelete }) => {
         setChecked((prev) => prev.filter((_, idx) => !toDelete.includes(idx)));
     };
 
-    const handleFileChange = (e) => {
-        setPaymentFile(e.target.files[0]);
-    };
-
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         let hasError = false;
         const newErrors = {
             paymentFile: '',
@@ -68,10 +67,45 @@ const RegistrationSummary = ({ athletes, onAddNewAthlete, onDelete }) => {
 
     setErrors(newErrors);
 
-    if (!hasError) {
-        // alert("✅ Submission Successful!");
-        setOpenSuccessModal(true);
+    if (hasError) return;
+
+    try {
+      setLoading(true);
+      setApiError('');
+
+      // Filter selected athletes
+      const selectedAthletes = athletes.filter((_, idx) => checked[idx]);
+
+       // Validate each athlete has all required fields
+    const invalidAthletes = selectedAthletes.filter(athlete => 
+      !athlete.fullName || !athlete.email || !athlete.contact || 
+      !athlete.school || !athlete.dob || !athlete.ageGroup || 
+      !athlete.events || athlete.events.length === 0
+    );
+
+     if (invalidAthletes.length > 0) {
+      setApiError("Please make sure all athletes have complete information");
+      return;
     }
+
+    // Log what's being sent for debugging
+    // console.log("Selected athletes:", selectedAthletes);
+    // console.log("Total fee:", totalFee);
+    // console.log("Payment file:", paymentFile);
+
+      // Call API
+      await registerAthletes(selectedAthletes, paymentFile, totalFee);
+
+      // Show success modal
+      setOpenSuccessModal(true);
+
+    } catch (error) {
+      console.error(error);
+      setApiError(error.response?.data?.message || "Something went wrong, please try again.");
+    } finally {
+      setLoading(false);
+    }
+
     };
 
     return (
@@ -167,9 +201,10 @@ const RegistrationSummary = ({ athletes, onAddNewAthlete, onDelete }) => {
                 <Typography variant="subtitle1" gutterBottom>Upload Payment Slip</Typography>
 
                 <FileUpload
+                    
                     onFilesSelected={(files) => {
                     if (files.length > 0) {
-                        setPaymentFile(files[0]); // Save first file only
+                        setPaymentFile(files[0]); 
                         setErrors(prev => ({ ...prev, paymentFile: '' }));
                     } else {
                         setPaymentFile(null);

@@ -1,25 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Typography,
-  Container,
-  Grid,
-  TextField,
-  FormControl,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Checkbox,
-  Button,
-  MenuItem,
-  Select,
-  FormGroup,
-  FormHelperText
-} from '@mui/material';
-
-import Guideline from "../assets/images/RegistrationForm/eventAgeCategory.png"; //F:\Level 3 individual Project\AthleTech_Frontend\athletechfrontend\src\assets\images\RegistrationForm\eventAgeCategory.png
-
- // Adjust the import path as necessary
+import { Box, Typography, Container, Grid, TextField, FormControl, RadioGroup, FormControlLabel, Radio, Checkbox, Button, MenuItem, Select, FormGroup, FormHelperText } from '@mui/material';
+import Guideline from "../assets/images/RegistrationForm/eventAgeCategory.png"; 
 
 const Registration = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -65,7 +46,6 @@ const Registration = ({ onSubmit }) => {
       [name]: value
     }));
 
-     // Clear error for this field as user types
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -98,12 +78,16 @@ const Registration = ({ onSubmit }) => {
     }
     if (!formData.email.trim()) {
       newErrors.email = '*Please enter your email';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = '*Please enter a valid email';
     }
     if (!formData.contact.trim()) {
       newErrors.contact = '*Please enter your contact number';
+    } else if (!/^[0-9]{10}$/.test(formData.contact)) {
+      newErrors.contact = '*Contact number must be 10 digits';
     }
     if (!formData.school.trim()) {
-      newErrors.address = '*Please enter your school name';
+      newErrors.school = '*Please enter your school name';
     }
     if (!formData.dob) {
       newErrors.dob = '*Please select your date of birth';
@@ -172,7 +156,7 @@ const Registration = ({ onSubmit }) => {
 
       <Box
         component="img"
-        src= {Guideline} // <-- replace with your image path
+        src= {Guideline}
         alt="Mora Kid Athlete Banner"
         sx={{
           width: '100%',
@@ -200,7 +184,7 @@ const Registration = ({ onSubmit }) => {
         <Box component="form" onSubmit={handleSubmit}>
           {[
             { label: 'Full Name', name: 'fullName', type: 'text', placeholder: 'Enter full name' },
-            { label: 'Email', name: 'email', type: 'email', placeholder: 'example@gmail.com' },
+            { label: 'Email', name: 'email', type: 'text', placeholder: 'example@gmail.com' },
             { label: 'Contact Number (WhatsApp Number)', name: 'contact', type: 'text', placeholder: '0771234567' }
           ].map((field) => (
             <Box key={field.name} sx={{ mb: 3 }}>
@@ -252,10 +236,10 @@ const Registration = ({ onSubmit }) => {
               multiline
               rows={1}
               placeholder="Royal College, Colombo 07"
-              value={formData.address}
+              value={formData.school}
               onChange={handleChange}
-              error={!!errors.address}
-              helperText={errors.address}
+              error={!!errors.school}
+              helperText={errors.school}
               sx={{
                 backgroundColor: '#fff',
                 '& .MuiOutlinedInput-root': {
@@ -307,8 +291,8 @@ const Registration = ({ onSubmit }) => {
               >
                 <MenuItem value="" disabled>Select Options</MenuItem>
                 <MenuItem value="under12">Under 12</MenuItem>
-                <MenuItem value="under15">Under 13</MenuItem>
-                <MenuItem value="under18">Under 14</MenuItem>
+                <MenuItem value="under13">Under 13</MenuItem>
+                <MenuItem value="under14">Under 14</MenuItem>
                 <MenuItem value="open">Open</MenuItem>
               </Select>
               {errors.ageGroup && <FormHelperText>{errors.ageGroup}</FormHelperText>}

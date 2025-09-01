@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import "../styles/Gallery.css";
-import { GalleryImage } from "./GalleryImage";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // Import icons for pagination
-import { Box, Typography } from "@mui/material";
-
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Box, Typography, CircularProgress, Alert } from "@mui/material";
 import bgImage from "../assets/images/Home Page Carousel.svg";
 
 const PageName = () => {
@@ -39,13 +37,42 @@ const PageName = () => {
 };
 
 const Images = () => {
-  // console.log(GalleryImage)
-
-  const [file, setFile] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [imagesPerPage, setImagesPerPage] = useState(10); // Default images per page
+  const [imagesPerPage, setImagesPerPage] = useState(12);
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Function to Update Images Per Page Based on Screen Size
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("http://localhost:5000/api/v1/gallery/images");
+        
+         const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          throw new Error('Server returned non-JSON response');
+        }
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch images');
+        }
+        
+        const data = await response.json();
+        setImages(data);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching images:', err);
+        setError('Failed to load images. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
   useEffect(() => {
     const updateImagesPerPage = () => {
       if (window.innerWidth <= 375) {
@@ -55,76 +82,101 @@ const Images = () => {
       }
     };
 
-    updateImagesPerPage(); // Call function on component mount
+    updateImagesPerPage();
+    window.addEventListener("resize", updateImagesPerPage);
 
-    window.addEventListener("resize", updateImagesPerPage); // Listen for window resize events
-
-    return () => window.removeEventListener("resize", updateImagesPerPage); // Cleanup listener on component unmount
+    return () => window.removeEventListener("resize", updateImagesPerPage);
   }, []);
 
-  const totalPages = Math.ceil(GalleryImage.length / imagesPerPage); //Calculate total pages
-
-  //Get current images for the page
+  const totalPages = Math.ceil(images.length / imagesPerPage);
   const startIndex = (currentPage - 1) * imagesPerPage;
-  const currentImages = GalleryImage.slice(
-    startIndex,
-    startIndex + imagesPerPage
-  );
+  const currentImages = images.slice(startIndex, startIndex + imagesPerPage);
+
+  if (loading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="50vh">
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="50vh">
+        <Alert severity="error">{error}</Alert>
+      </Box>
+    );
+  }
 
   return (
     <div className="gallery-main-container">
-      <div className="gallery-container">
-        {currentImages.map((file, index) => (
-          <div
-            className="galleryimage"
-            key={index}
-            onClick={() => setFile(file)}
-          >
-            {file.type === "image" && (
-              <img src={file.url} alt={`Gallery ${index}`} />
-            )}
+      {images.length === 0 ? (
+        <Box display="flex" justifyContent="center" alignItems="center" minHeight="50vh">
+          <Typography variant="h6">No images found in the gallery.</Typography>
+        </Box>
+      ) : (
+        <>
+          <div className="gallery-container">
+            {currentImages.map((image, index) => (
+              <div
+                className="galleryimage"
+                key={image.public_id ? String(image.public_id) : index}
+                onClick={() => setSelectedImage(image)}
+              >
+                <img 
+                  src={image.url} 
+                  alt={`Gallery ${index}`} 
+                  loading="lazy" // Lazy load images for better performance
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {/* Popup model for image */}
-      {file && (
-        <div className="popup-galleryimage">
-          <span onClick={() => setFile(null)}>&times;</span>
-          <img src={file?.url} alt="Selected" />
-        </div>
+          {/* Popup modal for image */}
+          {selectedImage && (
+            <div className="popup-galleryimage" onClick={() => setSelectedImage(null)}>
+              <span onClick={(e) => {
+                e.stopPropagation();
+                setSelectedImage(null);
+              }}>&times;</span>
+              <img src={selectedImage.url} alt="Selected" />
+            </div>
+          )}
+
+          {/* Pagination controls */}
+          {totalPages > 1 && (
+            <div className="pagination">
+              <button
+                className="pagination-arrow"
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+              >
+                <ChevronLeft size={20} />
+              </button>
+
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`pagination-number ${
+                    currentPage === page ? "active" : ""
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+
+              <button
+                className="pagination-arrow"
+                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          )}
+        </>
       )}
-
-      <div className="pagination">
-        <button
-          className="pagination-arrow"
-          onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-          disabled={currentPage === 1}
-        >
-          <ChevronLeft size={20} />
-        </button>
-
-        {/* **Generate Page Numbers Dynamically** */}
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <button
-            key={page}
-            onClick={() => setCurrentPage(page)}
-            className={`pagination-number ${
-              currentPage === page ? "active" : ""
-            }`}
-          >
-            {page}
-          </button>
-        ))}
-
-        <button
-          className="pagination-arrow"
-          onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-          disabled={currentPage === totalPages}
-        >
-          <ChevronRight size={20} />
-        </button>
-      </div>
     </div>
   );
 };

@@ -1,8 +1,3 @@
-// // src/pages/Gallery.js
-// export const GalleryImage = [
-//     { type: 'image', url: require('../assets/images/Gallery images/3.jpg') },
-// ];
-
 import img1 from '../assets/images/Galleryimages/Gallery_14.jpg';
 import img2 from '../assets/images/Galleryimages/Gallery_1.jpg';
 import img3 from '../assets/images/Galleryimages/3.jpg';

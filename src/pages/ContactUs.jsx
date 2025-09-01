@@ -115,7 +115,7 @@ const ContactUs = () => {
             Questions, comments, or suggestions? Simply fill in the form and
             we'll be in touch shortly.
           </p>
-          <ContactInfo />
+          {/* <ContactInfo /> */}
         </div>
         {/* <ContactForm /> */}
       </div>
