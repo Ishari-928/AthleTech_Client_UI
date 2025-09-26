@@ -73,10 +73,8 @@ const RegistrationSummary = ({ athletes, onAddNewAthlete, onDelete }) => {
       setLoading(true);
       setApiError('');
 
-      // Filter selected athletes
       const selectedAthletes = athletes.filter((_, idx) => checked[idx]);
 
-       // Validate each athlete has all required fields
     const invalidAthletes = selectedAthletes.filter(athlete => 
       !athlete.fullName || !athlete.email || !athlete.contact || 
       !athlete.school || !athlete.dob || !athlete.ageGroup || 
@@ -88,15 +86,12 @@ const RegistrationSummary = ({ athletes, onAddNewAthlete, onDelete }) => {
       return;
     }
 
-    // Log what's being sent for debugging
     // console.log("Selected athletes:", selectedAthletes);
     // console.log("Total fee:", totalFee);
     // console.log("Payment file:", paymentFile);
 
-      // Call API
       await registerAthletes(selectedAthletes, paymentFile, totalFee);
 
-      // Show success modal
       setOpenSuccessModal(true);
 
     } catch (error) {
@@ -130,7 +125,7 @@ const RegistrationSummary = ({ athletes, onAddNewAthlete, onDelete }) => {
                     justifyContent: 'space-between',
                     gap: 2,
                     mb: 2,
-                    flexWrap: 'wrap', // optional if needed for wrapping on very small screens
+                    flexWrap: 'wrap', 
                 }}
                                 >
                 <Button

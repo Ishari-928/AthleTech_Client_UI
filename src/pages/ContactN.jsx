@@ -33,7 +33,6 @@ const PageName = () => {
     );
 };
   
-// organizing committee section
 
 import img1 from "../assets/images/AboutUsImages/samod 1.1.jpg";
 import img2 from "../assets/images/AboutUsImages/Dulith.jpg";
@@ -66,24 +65,22 @@ const committeeMembers = [
 
 const ContactForm = () => {
     return (
-    //   <Container maxWidth="sm">
             <Box component="form"
                 sx={{
-                    // mt: 4,
                     '& .MuiInputBase-input': {fontFamily: '"Open Sans", sans-serif'},
                     '& .MuiFormLabel-root': { fontFamily: '"Open Sans", sans-serif' },
                     '& .MuiOutlinedInput-root':
                     {
-                        '& fieldset': { borderColor: '#ccc', }, // Default border color 
-                        '&:hover fieldset': { borderColor: '#ff5733', }, // Border color on hover
-                        '&.Mui-focused fieldset': {borderColor: '#ff5733',}, // Border color when focused
+                        '& fieldset': { borderColor: '#ccc', }, 
+                        '&:hover fieldset': { borderColor: '#ff5733', }, 
+                        '&.Mui-focused fieldset': {borderColor: '#ff5733',}, 
                     
                     },
                     '& .Mui-focused': { color: '#ff5733 !important', },
 
                     '& input::placeholder, & textarea::placeholder': { 
-                        color: '#a9a9a9', // Set placeholder color for both input and textarea
-                        opacity: 1, // Ensure visibility
+                        color: '#a9a9a9', 
+                        opacity: 1, 
                     }
                     
                 }}>
@@ -157,11 +154,11 @@ const ContactForm = () => {
                         type="submit"
 
                         sx={{
-                            backgroundColor: "#ff5733", // Custom button color
-                            marginBottom: "20px", // Add bottom margin
-                            marginTop: "20px", // Add top margin
+                            backgroundColor: "#ff5733", 
+                            marginBottom: "20px", 
+                            marginTop: "20px", 
                             "&:hover": {
-                              backgroundColor: "#cc4627", // Change color on hover
+                              backgroundColor: "#cc4627", 
                             },
                         }}             
                     >
@@ -170,7 +167,7 @@ const ContactForm = () => {
                 </Grid>
           </Grid>
         </Box>
-    //   </Container>
+   
     );
   };
   
@@ -207,11 +204,10 @@ const ContactN = () => {
                         justifyContent: "center",
                         alignItems: "center",
                         textAlign: "center",
-                        margin: "0 auto", // Center horizontally
+                        margin: "0 auto", 
                     }}
                 >
                 <Grid container spacing={4} alignItems="center" sx={{ mt:2, mb: 6 ,  maxWidth: "1100px" }} >
-                    {/* Left Column - Text Section */}
                     <Grid item xs={12} md={6} sx={{ mt: -5 }}>
                         <Typography variant="h2" sx={{ fontWeight: "bold", mb: 2 }}>
                             Let's talk with us
@@ -233,7 +229,6 @@ const ContactN = () => {
                         </Typography>
                     </Grid>
 
-                    {/* Right Column - Contact Form */}
                     <Grid item xs={12} md={6}>
                         <ContactForm />
                     </Grid>

@@ -10,7 +10,7 @@ const Condition = () => {
         display="flex" 
         justifyContent="center" 
         alignItems="center" 
-        height="110vh" // Makes sure it centers vertically
+        height="110vh" 
     >
         <img 
             src={conditionImg} 

@@ -17,19 +17,16 @@ import {
 } from '@mui/material';
 
 const HeatResults = () => {
-  // Set default selected values
   const [ageGroup, setAgeGroup] = useState('Under 15');
   const [event, setEvent] = useState('100M');
   const [gender, setGender] = useState('Boys');
   const [year, setYear] = useState('2025');
 
-  //  Dropdown options
   const ageOptions = ['Under 12', 'Under 13', 'Under 14', 'Under 15', 'Open'];
   const eventOptions = ['100M', '200M', '400M', '8000M', '1500M'];
   const genderOptions = ['Boys', 'Girls'];
   const yearOptions = ['2025', '2024', '2023'];
 
-  // Dummy heat results (simulate multiple heats)
   const dummyData = [
     {
       heatNo: 1,
@@ -66,7 +63,6 @@ const HeatResults = () => {
     },
   ];
 
-  // ✅ Filter data based on current selections
   const filteredHeats = dummyData.filter(
     heat =>
       heat.ageGroup === ageGroup &&
@@ -107,7 +103,6 @@ const HeatResults = () => {
         ))}
       </Grid>
 
-      {/* Display selected filters */}
       {filteredHeats.length > 0 && (
         <Box textAlign="center" mb={2}>
           <Typography variant="h6" fontWeight="bold">MORA KID Athlete - {year}</Typography>
@@ -116,7 +111,6 @@ const HeatResults = () => {
         </Box>
       )}
 
-      {/* Dynamic Heats */}
       {filteredHeats.length > 0 ? (
         filteredHeats.map((heat, index) => (
           <Box key={index} mb={4}>

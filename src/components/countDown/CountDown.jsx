@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
-// eslint-disable-next-line react/prop-types
 function CountDown({ date }) {
   const calculateTimeLeft = () => {
     const targetDate = new Date(date).getTime();

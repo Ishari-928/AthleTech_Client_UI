@@ -1,6 +1,5 @@
 import client from "./client";
 
-// Register athletes with payment slip
 export const registerAthletes = async (athletes, paymentFile, totalFee) => {
   const formData = new FormData();
 
@@ -20,7 +19,6 @@ export const registerAthletes = async (athletes, paymentFile, totalFee) => {
   formData.append("athletes", JSON.stringify(payload));
   formData.append("payment_slip", paymentFile);
 
-  // Log FormData contents for debugging
   for (let [key, value] of formData.entries()) {
     console.log(key, value);
   }

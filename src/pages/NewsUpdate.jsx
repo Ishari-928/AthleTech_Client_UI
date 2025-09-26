@@ -1,8 +1,7 @@
-// pages/NewsUpdate.jsx
 import React, { useEffect, useState } from 'react';
 import { NewsDetail } from '../components/newsUpdate/NewsDetail';
 import { NewsCard } from '../components/newsUpdate/NewsCard';
-import { getActiveNews } from '../api/activeNews'; // Import the API function
+import { getActiveNews } from '../api/activeNews'; 
 import { 
   Box, 
   Container, 
@@ -32,7 +31,6 @@ export const NewsUpdate = () => {
       if (response.success && response.data) {
         setNewsData(response.data);
         
-        // Set the first news as selected if available
         if (response.data.length > 0) {
           setSelectedNews(response.data[0]);
         }

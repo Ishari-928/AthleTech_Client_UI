@@ -17,11 +17,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-// Import your API function
 import { getActiveCoaches } from '../api/clientCoach';
-
-// Fallback images
-
 
 const CoachesDetails = () => {
   const [coachesData, setCoachesData] = useState([]);
@@ -32,7 +28,6 @@ const CoachesDetails = () => {
   
   const cardsPerPage = 5;
 
-  // Fetch active coaches from API
   useEffect(() => {
     const fetchCoaches = async () => {
       try {
@@ -42,7 +37,6 @@ const CoachesDetails = () => {
         if (response.success && response.data) {
           setCoachesData(response.data);
           
-          // Auto-select coach by day of week
           const today = new Date().getDay();
           const index = today % response.data.length;
           setSelectedCoachIndex(index);

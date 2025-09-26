@@ -30,7 +30,7 @@ const SuccessModal = ({ open, onClose }) => {
             variant="contained"
             onClick={() => {
               onClose();       
-              navigate('/');   // redirect to Home
+              navigate('/');   
             }}
             sx={{ backgroundColor: '#ff5722', '&:hover': { backgroundColor: '#f4511e' } }}
           >

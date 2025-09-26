@@ -126,13 +126,12 @@ const Images = () => {
                 <img 
                   src={image.url} 
                   alt={`Gallery ${index}`} 
-                  loading="lazy" // Lazy load images for better performance
+                  loading="lazy" 
                 />
               </div>
             ))}
           </div>
 
-          {/* Popup modal for image */}
           {selectedImage && (
             <div className="popup-galleryimage" onClick={() => setSelectedImage(null)}>
               <span onClick={(e) => {

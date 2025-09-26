@@ -17,22 +17,18 @@ import {
 } from '@mui/material';
 
 const FinalResults = () => {
-  // Dropdown states
   const [ageGroup, setAgeGroup] = useState('Under 15');
   const [event, setEvent] = useState('100M');
   const [gender, setGender] = useState('Boys');
   const [year, setYear] = useState('2025');
 
-  // Dropdown options
   const ageOptions = ['Under 12', 'Under 13', 'Under 14', 'Under 15', 'Open'];
   const eventOptions = ['100M', '200M', '400M', '8000M', '1500M', 'Long Jump', 'High Jump', 'Shot Put', 'Discus Throw', 'Javelin Throw'];
   const genderOptions = ['Boys', 'Girls'];
   const yearOptions = ['2025', '2024', '2023'];
 
-  // Field events
   const fieldEvents = ['Long Jump', 'High Jump', 'Shot Put', 'Discus Throw', 'Javelin Throw'];
 
-  // Dummy data
   const finalResultsData = [
     {
       ageGroup: 'Under 15',
@@ -71,7 +67,6 @@ const FinalResults = () => {
     }
   ];
 
-  // Filtered data
   const filteredFinal = finalResultsData.find(
     final =>
       final.ageGroup === ageGroup &&
@@ -80,7 +75,6 @@ const FinalResults = () => {
       final.year === year
   );
 
-  // Sort field event results by place if available
   if (filteredFinal && fieldEvents.includes(event)) {
     const placeOrder = ['1st Place', '2nd Place', '3rd Place'];
     filteredFinal.athletes.sort((a, b) => {
@@ -100,7 +94,6 @@ const FinalResults = () => {
         Find Your Final Results
       </Typography>
 
-      {/* Dropdown filters */}
       <Grid container spacing={2} justifyContent="center" sx={{ mb: 4, mt: 3 }}>
         {[{ label: 'Age Group', value: ageGroup, set: setAgeGroup, options: ageOptions },
           { label: 'Event', value: event, set: setEvent, options: eventOptions },
@@ -120,7 +113,6 @@ const FinalResults = () => {
         ))}
       </Grid>
 
-      {/* Header display */}
       {filteredFinal && (
         <Box textAlign="center" mb={2}>
           <Typography variant="h6" fontWeight="bold">MORA KID Athlete - {year}</Typography>
@@ -129,7 +121,6 @@ const FinalResults = () => {
         </Box>
       )}
 
-      {/* Results table */}
       {filteredFinal ? (
         <Paper elevation={3}>
           <Table>
@@ -188,7 +179,6 @@ const FinalResults = () => {
         </Typography>
       )}
 
-      {/* Download Button */}
       <Box textAlign="center" mt={5}>
         <Button variant="contained" color="warning" sx={{ borderRadius: 2, px: 4, mb: 4 }}>
           Download
