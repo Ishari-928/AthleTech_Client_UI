@@ -15,6 +15,8 @@ import {
   Grid,
   Button,
 } from '@mui/material';
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const HeatResults = () => {
   const [ageGroup, setAgeGroup] = useState('Under 15');
@@ -70,6 +72,37 @@ const HeatResults = () => {
       heat.gender === gender &&
       heat.year === year
   );
+
+  const downloadPDF = (data) => {
+    if (!data.length) return;
+
+      const doc = new jsPDF();
+
+      data.forEach((heat, index) => {
+        // Title
+        doc.setFontSize(14);
+        doc.text(`Heat ${heat.heatNo}`, 14, 15 + index * 80);
+
+        // Convert athlete data into rows
+        const rows = heat.athletes.map(a => [
+          a.bib,
+          a.name,
+          a.school,
+          a.performance,
+          a.qualified
+        ]);
+
+        // Add table using autoTable plugin
+        autoTable(doc, {
+          startY: 20 + index * 80,
+          head: [["BIB No", "Athlete Name", "School", "Performance", "Qualified"]],
+          body: rows,
+        });
+      });
+
+      doc.save("heat_results.pdf");
+  };
+
 
   return (
       <Box sx={{
@@ -151,8 +184,13 @@ const HeatResults = () => {
 
       {/* Download Button */}
       <Box textAlign="center" mt={5}>
-        <Button variant="contained" color="warning" sx={{ borderRadius: 2, px: 4, mb: 4 }}>
-          Download
+        <Button
+          variant="contained"
+          color="warning"
+          sx={{ borderRadius: 2, px: 4, mb: 4 }}
+          onClick={() => downloadPDF(filteredHeats)}
+        >
+          Download PDF
         </Button>
       </Box>
     </Box>

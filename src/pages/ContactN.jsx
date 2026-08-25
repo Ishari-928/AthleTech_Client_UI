@@ -22,7 +22,7 @@ const PageName = () => {
         <Typography
           sx={{
             fontSize: { xs: "40px", md: "60px"},
-                    fontWeight: 800,
+            fontWeight: 800,
             marginTop: "30px",
             
           }}
@@ -32,7 +32,6 @@ const PageName = () => {
       </Box>
     );
 };
-  
 
 import img1 from "../assets/images/AboutUsImages/samod 1.1.jpg";
 import img2 from "../assets/images/AboutUsImages/Dulith.jpg";
@@ -65,52 +64,62 @@ const committeeMembers = [
 
 const ContactForm = () => {
     return (
-            <Box component="form"
-                sx={{
-                    '& .MuiInputBase-input': {fontFamily: '"Open Sans", sans-serif'},
-                    '& .MuiFormLabel-root': { fontFamily: '"Open Sans", sans-serif' },
-                    '& .MuiOutlinedInput-root':
-                    {
-                        '& fieldset': { borderColor: '#ccc', }, 
-                        '&:hover fieldset': { borderColor: '#ff5733', }, 
-                        '&.Mui-focused fieldset': {borderColor: '#ff5733',}, 
-                    
-                    },
-                    '& .Mui-focused': { color: '#ff5733 !important', },
-
-                    '& input::placeholder, & textarea::placeholder': { 
-                        color: '#a9a9a9', 
-                        opacity: 1, 
-                    }
-                    
-                }}>
+        <Box component="form" 
+            action="https://formsubmit.co/athletech.test@gmail.com" 
+            method="POST"
+            sx={{
+                '& .MuiInputBase-input': {fontFamily: '"Open Sans", sans-serif'},
+                '& .MuiFormLabel-root': { fontFamily: '"Open Sans", sans-serif' },
+                '& .MuiOutlinedInput-root':
+                {
+                    '& fieldset': { borderColor: '#ccc', }, 
+                    '&:hover fieldset': { borderColor: '#ff5733', }, 
+                    '&.Mui-focused fieldset': {borderColor: '#ff5733',}, 
                 
+                },
+                '& .Mui-focused': { color: '#ff5733 !important', },
+                '& input::placeholder, & textarea::placeholder': { 
+                    color: '#a9a9a9', 
+                    opacity: 1, 
+                }
+            }}>
+            
+            <input type="hidden" name="_subject" value="New Contact Form Submission" />
+            <input type="hidden" name="display_name" value="Ishari Abeysooriya" />
+            <input type="hidden" name="contact_number" value="0715921566" />
+            <input type="hidden" name="fixed_message" value="hello" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_autoresponse" value="Thank you for contacting us! We will get back to you soon." />
+            
             <Grid container spacing={2}>
-            {/* First Name & Last Name Row */}
+                {/* First Name & Last Name Row */}
                 <Grid item xs={12} sm={6}>
                     <TextField
                         fullWidth
+                        name="firstName"
                         label="First Name"
                         variant="outlined"
                         placeholder="John"
                         required
-                                           
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
                         fullWidth
+                        name="lastName"
                         label="Last Name"
                         variant="outlined"
                         placeholder="Doe"
                         required
                     />
                 </Grid>
-  
+
                 {/* Email */}
                 <Grid item xs={12}>
                     <TextField
                         fullWidth
+                        name="email"
                         label="Email"
                         variant="outlined"
                         type="email"
@@ -118,33 +127,33 @@ const ContactForm = () => {
                         required
                     />
                 </Grid>
-  
+
                 {/* Phone */}
                 <Grid item xs={12}>
                     <TextField
                         fullWidth
+                        name="phone"
                         label="Phone Number"
                         variant="outlined"
                         type="tel"
                         placeholder="+94 71 592 1566"
-                        inputProps={{ pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}" }}
                         required
                     />
                 </Grid>
-  
+
                 {/* Message */}
                 <Grid item xs={12}>
                     <TextField
                         fullWidth
+                        name="message"
                         label="Your Message"
                         variant="outlined"
                         multiline
                         rows={4}
                         placeholder="Type your message here..."
-                        required
                     />
                 </Grid>
-  
+
                 {/* Submit Button */}
                 <Grid item xs={12}>
                     <Button
@@ -152,25 +161,23 @@ const ContactForm = () => {
                         variant="contained"
                         size="large"
                         type="submit"
-
                         sx={{
                             backgroundColor: "#ff5733", 
                             marginBottom: "20px", 
                             marginTop: "20px", 
                             "&:hover": {
-                              backgroundColor: "#cc4627", 
+                                backgroundColor: "#cc4627", 
                             },
                         }}             
                     >
                         Send Message
                     </Button>
                 </Grid>
-          </Grid>
+            </Grid>
         </Box>
-   
     );
-  };
-  
+};
+
 const ContactN = () => {
     return (
         <div className="contact-us">
@@ -239,6 +246,6 @@ const ContactN = () => {
             
         </div>
     );
-  };
-  
-  export default ContactN;
+};
+
+export default ContactN;

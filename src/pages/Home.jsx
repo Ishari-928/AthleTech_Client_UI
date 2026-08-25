@@ -7,6 +7,9 @@ import description1Img from "../assets/images/runner.png";
 import kidMeet from "../assets/images/kids.png";
 import { useNavigate } from 'react-router-dom';
 
+const openPDF = (pdfUrl) => {
+    window.open(pdfUrl, '_blank', 'noopener,noreferrer');
+};
 
 const Main = () => {
   
@@ -131,14 +134,17 @@ const Cards = () => {
           <h3>Hand Book</h3>
           <p>Details about MORA KID Athletic meet programs.</p>
         </a>
-        <a
-          href="/schedule"
+         <div
+          onClick={() => openPDF("https://drive.google.com/file/d/1ziV6zcPQeZVk8b2kdbzQtSuAgkGNevHT/view?usp=drive_link")}
           className="card"
-          style={{ backgroundImage: "url('./src/assets/images/Schedule.svg')" }}
+          style={{ 
+            backgroundImage: "url('./src/assets/images/Schedule.svg')",
+            cursor: 'pointer'
+          }}
         >
           <h3>Schedule</h3>
           <p>2-day event. Schedule will be announced soon!</p>
-        </a>
+        </div>
       </div>
     </div>
   );
