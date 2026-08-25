@@ -64,7 +64,7 @@ const FileUpload = ({ onFilesSelected }) => {
     e.stopPropagation();
     setIsDragging(false);
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      const file = e.dataTransfer.files[0]; // only take the first file
+      const file = e.dataTransfer.files[0]; 
       processFile(file);
     }
   };
@@ -95,7 +95,7 @@ const FileUpload = ({ onFilesSelected }) => {
     }
 
     setSelectedFile(file);
-    onFilesSelected?.([file]); // always send as array
+    onFilesSelected?.([file]); 
   };
 
   const handleRemoveFile = () => {

@@ -30,7 +30,6 @@ function Navbar() {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  //nested drop down
   const [anchorElResults, setAnchorElResults] = React.useState(null);
   const [anchorElPast, setAnchorElPast] = React.useState(null);
 

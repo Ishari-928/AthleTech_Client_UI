@@ -9,8 +9,8 @@ const MultiStepForm = () => {
 
     const handleAddAthlete = (data) => {
     console.log("Received in MultiStepForm:", data);
-    setAthletes([...athletes, data]); // add athlete
-    setCurrentStep(2); // go to summary
+    setAthletes([...athletes, data]); 
+    setCurrentStep(2); 
   };
 
   const handleAddNewAthlete = () => {

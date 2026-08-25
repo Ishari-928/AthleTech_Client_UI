@@ -15,21 +15,20 @@ import {
   Grid,
   Button,
 } from '@mui/material';
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const HeatResults = () => {
-  // Set default selected values
   const [ageGroup, setAgeGroup] = useState('Under 15');
   const [event, setEvent] = useState('100M');
   const [gender, setGender] = useState('Boys');
   const [year, setYear] = useState('2025');
 
-  //  Dropdown options
   const ageOptions = ['Under 12', 'Under 13', 'Under 14', 'Under 15', 'Open'];
   const eventOptions = ['100M', '200M', '400M', '8000M', '1500M'];
   const genderOptions = ['Boys', 'Girls'];
   const yearOptions = ['2025', '2024', '2023'];
 
-  // Dummy heat results (simulate multiple heats)
   const dummyData = [
     {
       heatNo: 1,
@@ -66,7 +65,6 @@ const HeatResults = () => {
     },
   ];
 
-  // ✅ Filter data based on current selections
   const filteredHeats = dummyData.filter(
     heat =>
       heat.ageGroup === ageGroup &&
@@ -74,6 +72,37 @@ const HeatResults = () => {
       heat.gender === gender &&
       heat.year === year
   );
+
+  const downloadPDF = (data) => {
+    if (!data.length) return;
+
+      const doc = new jsPDF();
+
+      data.forEach((heat, index) => {
+        // Title
+        doc.setFontSize(14);
+        doc.text(`Heat ${heat.heatNo}`, 14, 15 + index * 80);
+
+        // Convert athlete data into rows
+        const rows = heat.athletes.map(a => [
+          a.bib,
+          a.name,
+          a.school,
+          a.performance,
+          a.qualified
+        ]);
+
+        // Add table using autoTable plugin
+        autoTable(doc, {
+          startY: 20 + index * 80,
+          head: [["BIB No", "Athlete Name", "School", "Performance", "Qualified"]],
+          body: rows,
+        });
+      });
+
+      doc.save("heat_results.pdf");
+  };
+
 
   return (
       <Box sx={{
@@ -107,7 +136,6 @@ const HeatResults = () => {
         ))}
       </Grid>
 
-      {/* Display selected filters */}
       {filteredHeats.length > 0 && (
         <Box textAlign="center" mb={2}>
           <Typography variant="h6" fontWeight="bold">MORA KID Athlete - {year}</Typography>
@@ -116,7 +144,6 @@ const HeatResults = () => {
         </Box>
       )}
 
-      {/* Dynamic Heats */}
       {filteredHeats.length > 0 ? (
         filteredHeats.map((heat, index) => (
           <Box key={index} mb={4}>
@@ -157,8 +184,13 @@ const HeatResults = () => {
 
       {/* Download Button */}
       <Box textAlign="center" mt={5}>
-        <Button variant="contained" color="warning" sx={{ borderRadius: 2, px: 4, mb: 4 }}>
-          Download
+        <Button
+          variant="contained"
+          color="warning"
+          sx={{ borderRadius: 2, px: 4, mb: 4 }}
+          onClick={() => downloadPDF(filteredHeats)}
+        >
+          Download PDF
         </Button>
       </Box>
     </Box>

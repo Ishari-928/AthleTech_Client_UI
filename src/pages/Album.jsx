@@ -17,7 +17,6 @@ import img2 from "../assets/images/AboutUsImages/Dulith.jpg";
 import img3 from "../assets/images/AboutUsImages/Janith 1.1.jpg";
 import img4 from "../assets/images/AboutUsImages/Ishari.jpg";
 
-// Album data with navigation paths
 const galleryItems = [
   {
     path: "/gallery",

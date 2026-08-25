@@ -1,7 +1,5 @@
 import "../styles/Home.css";
 import { Box, Button, Typography } from "@mui/material";
-// import bgImage from "../assets/images/Home Page Carousel.svg";
-// import bgImage from "../assets/images/Group 3917.png"
 import bgImage from "../assets/images/2025 InterUni.jpg";
 import CountDown from "../components/countDown/CountDown";
 import { eventDay } from "../DB/eventData";
@@ -9,8 +7,12 @@ import description1Img from "../assets/images/runner.png";
 import kidMeet from "../assets/images/kids.png";
 import { useNavigate } from 'react-router-dom';
 
+const openPDF = (pdfUrl) => {
+    window.open(pdfUrl, '_blank', 'noopener,noreferrer');
+};
 
 const Main = () => {
+  
   return (
     <Box
       sx={{
@@ -68,8 +70,6 @@ const Main = () => {
         </Typography>
       </Box>
 
-      {/* Count down */}
-
       <Box
         sx={{
           display: "flex",
@@ -85,7 +85,8 @@ const Main = () => {
           borderTop: "2px solid rgba(200,200,200,1)",
         }}
       >
-        <CountDown date={eventDay.date1} />
+        <CountDown date="2025-10-10T00:00:00" />
+
 
         <Button
           sx={{
@@ -107,7 +108,6 @@ const Main = () => {
   );
 };
 
-// Cards Section
 const Cards = () => {
   const navigate = useNavigate();
   return (
@@ -134,20 +134,22 @@ const Cards = () => {
           <h3>Hand Book</h3>
           <p>Details about MORA KID Athletic meet programs.</p>
         </a>
-        <a
-          href="/schedule"
+         <div
+          onClick={() => openPDF("https://drive.google.com/file/d/1ziV6zcPQeZVk8b2kdbzQtSuAgkGNevHT/view?usp=drive_link")}
           className="card"
-          style={{ backgroundImage: "url('./src/assets/images/Schedule.svg')" }}
+          style={{ 
+            backgroundImage: "url('./src/assets/images/Schedule.svg')",
+            cursor: 'pointer'
+          }}
         >
           <h3>Schedule</h3>
           <p>2-day event. Schedule will be announced soon!</p>
-        </a>
+        </div>
       </div>
     </div>
   );
 };
 
-// Summary of Mora Kid Meet
 const MeetContent = () => {
   return (
     <Box
@@ -233,7 +235,6 @@ const MeetContent = () => {
   );
 };
 
-// 2025 Mora Kid Meet
 const MeetDetails = () => {
   const handleViewSchedule = () => {
     window.open(eventDay.scheduleLink, "_blank");
@@ -353,7 +354,6 @@ const MeetDetails = () => {
             <Button
               sx={{
                 marginLeft: "40px",
-                // backgroundColor: "black",
                 color: "#FF754A",
                 fontWeight: "600",
               }}
@@ -376,7 +376,6 @@ import partnerImg5 from "../assets/images/bairaha.jpeg";
 import partnerImg6 from "../assets/images/Ncinga.svg";
 
 
-// Partners Section
 const Partners = () => {
   return (
     <div className="partners-container">
@@ -454,7 +453,6 @@ const Partners = () => {
   );
 };
 
-// Main Home Component
 const Home = () => {
   return (
     <div>

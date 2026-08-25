@@ -19,8 +19,6 @@ import img18 from '../assets/images/Galleryimages/PG4.jpg';
 import img19 from '../assets/images/Galleryimages/PG9.jpg';
 import img20 from '../assets/images/Galleryimages/PG10.jpg';
 
-
-
 export const GalleryImage = [
     { type: 'image', url: img1 },
     { type: 'image', url: img2 },

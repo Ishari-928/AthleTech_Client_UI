@@ -16,7 +16,6 @@ function PastWinners() {
         display: "flex",
         flexDirection: "column",
         marginTop: { xs: "30px", md: "100px" },
-        // width: "100%",
         justifyContent: "center",
         alignItems: "center",
         padding: { xs: "20px", md: " 0 100px" },

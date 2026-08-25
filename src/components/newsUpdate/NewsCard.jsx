@@ -27,11 +27,11 @@ export const NewsCard = ({ news, isSelected, onClick }) => {
     >
       <CardMedia
         component="img"
-        image={news.image || '/placeholder-image.jpg'} // Added fallback for missing image
-        alt={news.news_topic} // Changed from news.title to news.news_topic
+        image={news.image || '/placeholder-image.jpg'} 
+        alt={news.news_topic} 
         sx={{ width: 100, height: 100, objectFit: 'cover' }}
         onError={(e) => {
-          e.target.src = '/placeholder-image.jpg'; // Fallback if image fails to load
+          e.target.src = '/placeholder-image.jpg'; 
         }}
       />
       <CardContent sx={{ flex: 1, padding: '12px !important' }}>
@@ -39,7 +39,7 @@ export const NewsCard = ({ news, isSelected, onClick }) => {
           {formatDate(news.date)}
         </Typography>
         <Typography variant="subtitle2">
-          {news.news_topic} {/* Changed from news.title to news.news_topic */}
+          {news.news_topic} 
         </Typography>
       </CardContent>
     </Card>

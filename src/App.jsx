@@ -38,7 +38,6 @@ function App() {
           {/* <Route path="/contactus" element={<ContactUs />} /> */}
           <Route path="/contact" element={<ContactN />} />
           <Route path="/condition" element={<Condition />} />
-          {/* <Route path="/registration-pageone" element={<RegistrationForm />} />  */}
           <Route path="/registration-summary" element={<RegistrationSummary />} />     
           <Route path="/registration" element={<MultiStepForm />} />
           <Route path="/file-upload" element={<FileUpload />} />
